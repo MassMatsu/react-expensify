@@ -1,5 +1,8 @@
 import React from 'react'
+import {ExpenseList} from '../components/index'
 
-const DashboardPage = () => <div>this is from my Dashbord page</div>;
+const DashboardPage = () => <div>
+  <ExpenseList/>
+</div>;
 
 export default DashboardPage
