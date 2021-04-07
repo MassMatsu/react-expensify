@@ -11,7 +11,7 @@ const Header = () => (
     <NavLink to='/create' activeClassName='is-active'>
       Create Expense
     </NavLink>
-    <NavLink to='/edit' activeClassName='is-active'>
+    <NavLink to='/edit/23' activeClassName='is-active'>
       Edit Expense
     </NavLink>
     <NavLink to='/help' activeClassName='is-active'>
