@@ -11,7 +11,7 @@ import { Header } from '../components/index';
 
 
 
-const AppRouter = (
+const AppRouter = () => (
   <BrowserRouter>
     <div>
       <Header />
