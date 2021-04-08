@@ -1,12 +1,14 @@
+import moment from 'moment'
 // function for all filtering at once by taking expenses state and fitlers state
 
 const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
   return expenses
     .filter((expense) => {
+      const createdAtMoment = moment(expense.createdAt)
       const startDateMatch =
-        startDate === undefined || expense.createdAt >= startDate;
+        startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true
       const endDateMatch =
-        endDate === undefined || expense.createdAt <= endDate;
+        endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true
       const textMatch = expense.description
         .toLowerCase()
         .includes(text.toLowerCase()); // if text = '', includes method always returns 'true'
