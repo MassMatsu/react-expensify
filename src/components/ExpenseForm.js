@@ -47,8 +47,6 @@ class ExpenseForm extends React.Component {
       this.setState(() => ({ error: 'please provide description and amount' }));
     } else {
       this.setState(() => ({ error: '' }));
-      console.log('submited');
-      console.log(this.props)
       this.props.onSubmit({
         description: this.state.description,
         amount: parseFloat(this.state.amount) * 100, // don't forget parse the amount in string
@@ -56,7 +54,6 @@ class ExpenseForm extends React.Component {
         note: this.state.note
       })
     }
-    this.setState(() => ({description: '', amount: '', createdAt: moment()}))
   };
 
   render() {
@@ -84,6 +81,7 @@ class ExpenseForm extends React.Component {
             onFocusChange={this.onFocusChange}
             numberOfMonths={1}
             isOutsideRange={() => false}
+            displayFormat={'DD/MM/YYYY'}
           />
           <textarea
             placeholder='Add a note for your expense (optional)'
