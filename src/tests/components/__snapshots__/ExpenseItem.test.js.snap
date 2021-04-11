@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ExpenseItem correctly 1`] = `
+<div>
+  <Link
+    replace={false}
+    to="/edit/1"
+  >
+    <h3>
+      rent
+       
+    </h3>
+  </Link>
+  <p>
+    23499
+     - 
+    0
+  </p>
+</div>
+`;
