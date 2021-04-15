@@ -13,28 +13,6 @@ import getVisibleExpenses from './selectors/expenses';
 
 const store = configureStore();
 
-console.log(store.getState());
-store.dispatch(
-  addExpense({
-    description: 'water bill',
-    amount: 4500,
-    createdAt: 1617887007628,
-  })
-);
-store.dispatch(
-  addExpense({ description: 'gas bill', amount: 150, createdAt: 1617887077628 })
-);
-store.dispatch(
-  addExpense({ description: 'rent', amount: 11000, createdAt: 1617887077628 })
-);
-store.dispatch(setTextFilter(''));
-
-console.log(store.getState());
-
-const state = store.getState();
-const filteredExpense = getVisibleExpenses(state.expenses, state.filters);
-
-console.log(filteredExpense);
 
 ReactDOM.render(
   <Provider store={store}>
