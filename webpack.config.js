@@ -9,7 +9,7 @@ module.exports = (env) => {
   return {
     entry: './src/app.js',
     output: {
-      path: path.join(__dirname, 'public'),
+      path: path.join(__dirname, 'public', 'dist'),
       filename: 'bundle.js',
     },
     // module property setup for babel (if you use ES6 or react etc)
@@ -40,6 +40,7 @@ module.exports = (env) => {
     devServer: {
       contentBase: path.join(__dirname, 'public'), // set where to find the public folder for webpack to run dev-server
       historyApiFallback: true,
+      publicPath: '/dist/'
     },
   };
 };
