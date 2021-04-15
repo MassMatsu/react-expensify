@@ -1,11 +1,11 @@
 const path = require('path'); // import module from node module
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 console.log(path.join(__dirname, 'public')); // you can see the log on terminal with "node webpack.config.js"
 
 module.exports = (env) => {
-  const isProduction = env === 'production'
+  const isProduction = env === 'production';
   // create a instance for ExtractTextPlugin
-  const CSSExtract = new ExtractTextPlugin('styles.css')
+  const CSSExtract = new ExtractTextPlugin('styles.css');
   return {
     entry: './src/app.js',
     output: {
@@ -24,7 +24,10 @@ module.exports = (env) => {
           test: /\.s?css$/, // looking for a file with .scss in the end
           //use: ['style-loader', 'css-loader', 'sass-loader'], // register required loaders
           use: CSSExtract.extract({
-            use: ['css-loader', 'sass-loader']
+            use: [
+              { loader: 'css-loader', options: { sourceMap: true } },
+              { loader: 'sass-loader', options: { sourceMap: true } },
+            ],
           }),
         },
       ],
@@ -39,5 +42,4 @@ module.exports = (env) => {
       historyApiFallback: true,
     },
   };
-}
-
+};
