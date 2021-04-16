@@ -4,8 +4,6 @@ import moment from 'moment'
 import numeral from 'numeral'
 
 const ExpenseItem = ({ id, description, amount, createdAt }) => {
-  const now = moment().format("dd, MM, YYYY")
-  console.log(amount)
   return (
     <div>
       <Link to={`/edit/${id}`}>
