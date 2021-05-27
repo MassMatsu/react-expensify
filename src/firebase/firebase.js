@@ -6,12 +6,12 @@ import 'firebase/database';
 //import * as firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDWgDiUqCC2X9pk2GvWBeru0ilBEWF_GYU',
-  authDomain: 'expensify-5ad03.firebaseapp.com',
-  databaseURL: 'https://expensify-5ad03-default-rtdb.firebaseio.com',
-  projectId: 'expensify-5ad03',
-  storageBucket: 'expensify-5ad03.appspot.com',
-  messagingSenderId: '134730365360',
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: '1:134730365360:web:e0552581cedd9907053e75',
   measurementId: 'G-8B6SRFJD3D',
 };
