@@ -1,9 +1,9 @@
 //import * as firebase from 'firebase';
-//import firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
-import * as firebase from 'firebase';
+//import * as firebase from 'firebase';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDWgDiUqCC2X9pk2GvWBeru0ilBEWF_GYU',
@@ -20,6 +20,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
+
+export {firebase, database as default}
 
 // database.ref('expenses').push({
 //   description: 'coffee', note: '', amount: 7, createAt: ''
@@ -48,31 +50,31 @@ const database = firebase.database();
 //   console.log(expenses)
 // });
 
-database.ref('expenses').on('value', (data) => {
-  const expenses = []
-  data.forEach((data) => {
-    expenses.push({
-      id: data.key,
-      ...data.val()
-    })
-  })
-  console.log(expenses)
-})
+// database.ref('expenses').on('value', (data) => {
+//   const expenses = []
+//   data.forEach((data) => {
+//     expenses.push({
+//       id: data.key,
+//       ...data.val()
+//     })
+//   })
+//   console.log(expenses)
+// })
 
 
 
-const firebaseNotes = {
-  notes: {
-    dfsdff: {
-      title: 'first note',
-      body: 'this is my note',
-    },
-    dsfsdf: {
-      title: 'another note',
-      body: 'this is her note',
-    },
-  },
-};
+// const firebaseNotes = {
+//   notes: {
+//     dfsdff: {
+//       title: 'first note',
+//       body: 'this is my note',
+//     },
+//     dsfsdf: {
+//       title: 'another note',
+//       body: 'this is her note',
+//     },
+//   },
+// };
 
 // const notes = [
 //   {

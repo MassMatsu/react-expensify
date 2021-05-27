@@ -21,7 +21,7 @@ test('should setup edit action object', () => {
   });
 });
 
-test('should setup add action object', () => {
+test('should setup add action object with provided values', () => {
   const expenseData = {
     description: 'coffee',
     amount: 232.99,
@@ -31,23 +31,24 @@ test('should setup add action object', () => {
   const result = addExpense(expenseData);
   expect(result).toEqual({
     type: 'ADD_EXPENSE',
-    expense: expenseData,
+    expense: expenseData
   });
 });
+
 
 test('should add expense to database and store', (done) => {
   // create mock store
   const store = createMockStore({})
   
   const expenseData = {
-    description: 'coffee',
+    description: 'rent',
     amount: 232.99,
     createdAt: 12313131,
     note: 'this is note',
   };
 
   store.dispatch(startAddExpense(expenseData)).then(() => {
-    // check if store dispatch the expected action here
+    //check if store dispatch the expected action here
     const actions = store.getActions()
     expect(actions[0]).toEqual({
       type: 'ADD_EXPENSE',
@@ -66,20 +67,33 @@ test('should add expense to database and store', (done) => {
   })
 })
 
-test('should add expense with defaults to database and store', () => {
+test('should add expense with defaults to database and store', (done) => {
+  const store = createMockStore({})
+  const expenseDefault = {
+    description: '',
+    amount: 0,
+    createdAt: 0,
+    note: '',
+  }
+
+  store.dispatch(startAddExpense({})).then(() => {
+    //check if store dispatch the expected action here
+    const actions = store.getActions()
+    expect(actions[0]).toEqual({
+      type: 'ADD_EXPENSE',
+      expense: {
+        id: expect.any(String),
+        ...expenseDefault
+      }
+    })
+
+    database.ref(`expenses/${actions[0].expense.id}`).once('value')
+      .then((snapshot) => {
+        expect(snapshot.val()).toEqual(expenseDefault)
+        done()
+      })
+  })
 
 })
-// test('should setup add action object with default values', () => {
-//   const result = addExpense();
-//   expect(result).toEqual({
-//     type: 'ADD_EXPENSE',
-//     expense: {
-//       description: '',
-//       note: '',
-//       amount: 0,
-//       createdAt: 0,
-//       id: expect.any(String),
-//     },
-//   });
-// });
+
 
