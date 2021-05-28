@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import {
+  LoginPage,
   DashboardPage,
   CreateExpensePage,
   EditExpensePage,
@@ -10,13 +11,13 @@ import {
 import { Header } from '../components/index';
 
 
-
 const AppRouter = () => (
-  <BrowserRouter>
+  <BrowserRouter> 
     <div>
       <Header />
       <Switch>
-        <Route path='/' exact component={DashboardPage} />
+        <Route path='/' exact component={LoginPage} />
+        <Route path='/dashboard' component={DashboardPage} />
         <Route path='/create' component={CreateExpensePage} />
         <Route path='/edit/:id' component={EditExpensePage} />
         <Route path='/help' component={HelpPage} />
