@@ -15,24 +15,36 @@ import { firebase } from './firebase/firebase';
 
 const store = configureStore();
 
+
+
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
-store.dispatch(startSetExpenses()).then(() => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <AppRouter />
-    </Provider>,
+let hasRendered = false
+const renderApp = () => {
+  if (!hasRendered) {
+    ReactDOM.render(
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>,
 
-    document.getElementById('app')
-  );
-});
+      document.getElementById('app')
+    );
+    hasRendered = true
+  } 
+}
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     console.log('log in')
-    
+    store.dispatch(startSetExpenses()).then(() => {
+      renderApp()
+      if (history.location.pathname === '/') {
+        history.push('/dashboard')
+      }
+    });
   } else {
     console.log('log out')
+    renderApp()
     history.push('/')
   }
 })
