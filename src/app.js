@@ -5,7 +5,7 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css'; // it is for datepicker on ExpenseListFilters and ExpenseForm component
 import { Provider } from 'react-redux';
 
-import AppRouter from './routers/AppRouter';
+import AppRouter, {history} from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
 // import { setTextFilter } from './actions/filters';
@@ -30,7 +30,9 @@ store.dispatch(startSetExpenses()).then(() => {
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     console.log('log in')
+    
   } else {
     console.log('log out')
+    history.push('/')
   }
 })
